@@ -1,0 +1,42 @@
+/* App.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.table {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+  background-color: #9c27b0;
+  border-color: #9c27b0;
+}
+
+.btn-primary:hover {
+  background-color: #7b1fa2;
+  border-color: #7b1fa2;
+}
+
+.navbar {
+  background-color: #9c27b0;
+}
+
+.navbar-brand, .nav-link {
+  color: white !important;
+}

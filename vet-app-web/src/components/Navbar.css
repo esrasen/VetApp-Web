@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'NimbusMonoL';
+    src: url('../assets/fonts/NimbusMonoL-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+.navbar-font {
+    font-family: 'NimbusMonoL', monospace;
+}
