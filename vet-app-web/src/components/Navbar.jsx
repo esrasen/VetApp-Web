@@ -3,7 +3,7 @@ import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem } from '@mui/ma
 import { Link, useLocation } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import '../styles.css';
+import './Navbar.css';
 import logo from '../assets/logo.png';
 import menu from '../assets/menu.png';
 import arrow from '../assets/arrow.png';
