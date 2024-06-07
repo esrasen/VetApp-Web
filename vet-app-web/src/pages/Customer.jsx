@@ -192,19 +192,25 @@ function Customer() {
             <Typography variant="h6" align="left" gutterBottom>
                 Müşteri Listesi
             </Typography>
-            <Box display="flex" justifyContent="flex-end" alignItems="center" mb={2}>
+            <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} justifyContent="flex-end" alignItems="center" mb={2} width="100%">
                 <TextField
                     label="Müşteri Adı ile Ara"
                     value={searchName}
                     onChange={(e) => setSearchName(e.target.value)}
                     variant="outlined"
                     size="small"
-                    style={{ marginRight: '10px' }}
+                    sx={{ marginRight: { xs: 0, md: '10px' }, marginBottom: { xs: '10px', md: 0 }, width: { xs: '100%', md: 'auto' } }}
                 />
-                <Button variant="contained" color="primary" onClick={handleSearchByName}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    sx={{ width: { xs: '100%', md: 'auto' } }}
+                    onClick={handleSearchByName}
+                >
                     Ara
                 </Button>
             </Box>
+
             <TableContainer component={Paper} style={{ boxShadow: 'none' }}>
                 <Table>
                     <TableHead style={{ backgroundColor: '#A855F7' }}>

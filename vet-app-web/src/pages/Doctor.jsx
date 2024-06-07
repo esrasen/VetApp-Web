@@ -13,6 +13,7 @@ import send from '../assets/send.png';
 
 function Doctor() {
     const [doctors, setDoctors] = useState([]);
+    const [searchName, setSearchName] = useState('');
     const [newDoctor, setNewDoctor] = useState({
         name: '',
         phone: '',
@@ -71,6 +72,16 @@ function Doctor() {
                 );
 
                 setIsErrorModalOpen(true);
+            });
+    };
+
+    const handleSearchByName = () => {
+        axios.get(DOCTOR_API.SEARCH_BY_NAME(searchName, page, rowsPerPage))
+            .then(response => {
+                setDoctors(response.data.content);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the doctors!", error);
             });
     };
 
@@ -263,11 +274,26 @@ function Doctor() {
             <Typography variant="h4" align="center" gutterBottom style={{ marginTop: '20px', marginBottom: '20px' }}>
                 Doktor Yönetimi
             </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: { xs: 'wrap', md: 'nowrap' } }}>
+                <Typography variant="h6" align="left" gutterBottom>
+                    Doktor Listesi
+                </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: { xs: 'column', md: 'row' }, width: { xs: '100%', md: 'auto' } }}>
+                    <TextField
+                        label="Doktor Adı ile Ara"
+                        value={searchName}
+                        onChange={(e) => setSearchName(e.target.value)}
+                        variant="outlined"
+                        size="small"
+                        sx={{ marginBottom: { xs: '10px', md: '0' }, marginRight: { md: '10px' }, width: { xs: '100%', md: 'auto' } }}
+                    />
+                    <Button variant="contained" color="primary" onClick={handleSearchByName} sx={{ width: { xs: '100%', md: 'auto' } }}>
+                        Ara
+                    </Button>
+                </Box>
+            </Box>
 
-            <Typography variant="h6" align="left" gutterBottom style={{ marginTop: '20px' }}>
-                Doktor Listesi
-            </Typography>
-            <TableContainer component={Paper} style={{ boxShadow: 'none' }}>
+            <TableContainer component={Paper} style={{ boxShadow: 'none', marginTop: '20px' }} gutterBottom>
                 <Table>
                     <TableHead style={{ backgroundColor: '#A855F7' }}>
                         <TableRow>
@@ -370,7 +396,6 @@ function Doctor() {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </TableContainer>
-
             <Typography variant="h6" align="left" gutterBottom style={{ marginTop: '20px' }}>
                 Doktor Ekle
             </Typography>

@@ -40,3 +40,10 @@ h2 {
 .navbar-brand, .nav-link {
   color: white !important;
 }
+
+@media (max-width: 600px) {
+  .navbar-font {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+}

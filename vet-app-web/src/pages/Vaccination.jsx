@@ -52,6 +52,7 @@ function Vaccination() {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+    const [searchName, setSearchName] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
@@ -363,6 +364,26 @@ function Vaccination() {
             });
     };
 
+    const handleSearchByName = () => {
+        axios.get(VACCINATION_API.SEARCH_BY_NAME(searchName, page, rowsPerPage))
+            .then(response => {
+                if (response.data && response.data.content) {
+                    setVaccinations(response.data.content);
+                } else {
+                    setErrorMessage('API response is not an array');
+                    setIsErrorModalOpen(true);
+                }
+            })
+            .catch(error => {
+                setErrorMessage(
+                    error.response && error.response.data && error.response.data.message
+                        ? 'API error: ' + error.response.data.message
+                        : 'API error: ' + error.message
+                );
+                setIsErrorModalOpen(true);
+            });
+    };
+
     const handleCloseErrorModal = () => {
         setIsErrorModalOpen(false);
         setErrorMessage('');
@@ -373,8 +394,21 @@ function Vaccination() {
             <Typography variant="h4" align="center" gutterBottom style={{ marginTop: '20px', marginBottom: '20px' }}>
                 Aşı Yönetimi
             </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', width: { xs: '100%', md: 'auto' } }}>
+                    <TextField
+                        label="Hayvan Adı ile Ara"
+                        value={searchName}
+                        onChange={(e) => setSearchName(e.target.value)}
+                        variant="outlined"
+                        size="small"
+                        sx={{ width: { xs: '100%', md: 'auto' }, marginBottom: { xs: '10px', md: 0 }, marginRight: { md: '10px' } }}
+                    />
+                    <Button variant="contained" color="primary" onClick={handleSearchByName} sx={{ width: { xs: '100%', md: 'auto' }, marginBottom: { xs: '10px', md: 0 } }}>
+                        Ara
+                    </Button>
+                </Box>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', width: { xs: '100%', md: 'auto' } }}>
                     <TextField
                         label="Başlangıç Tarihi"
                         type="date"
@@ -384,6 +418,7 @@ function Vaccination() {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        sx={{ width: { xs: '100%', md: 'auto' }, marginBottom: { xs: '10px', md: 0 }, marginRight: { md: '20px' } }}
                     />
                     <TextField
                         label="Bitiş Tarihi"
@@ -391,19 +426,17 @@ function Vaccination() {
                         value={endDate}
                         onChange={(e) => setEndDate(e.target.value)}
                         variant="outlined"
-                        sx={{ marginLeft: '20px' }}
+                        sx={{ width: { xs: '100%', md: 'auto' }, marginBottom: { xs: '10px', md: 0 }, marginRight: { md: '20px' } }}
                         InputLabelProps={{
                             shrink: true,
                         }}
                     />
-                    <Button variant="contained" color="primary" onClick={handleSearchByDateRange} sx={{ marginLeft: '20px' }}>
-                        Ara
+                    <Button variant="contained" color="primary" onClick={handleSearchByDateRange} sx={{ width: { xs: '100%', md: 'auto' } }}>
+                        Tarihe Göre Ara
                     </Button>
                 </Box>
             </Box>
-            <Typography variant="h6" align="left" gutterBottom>
-                Aşı Listesi
-            </Typography>
+
             <TableContainer component={Paper} style={{ boxShadow: 'none' }}>
                 <Table>
                     <TableHead style={{ backgroundColor: '#A855F7' }}>

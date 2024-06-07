@@ -281,12 +281,12 @@ function Animal() {
             <Typography variant="h4" align="center" gutterBottom style={{ marginTop: '20px', marginBottom: '20px' }}>
                 Hayvan Yönetimi
             </Typography>
-            <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+            <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} justifyContent="space-between" alignItems="center" mb={2}>
                 <Typography variant="h6" align="left" gutterBottom>
                     Hayvan Listesi
                 </Typography>
-                <Box display="flex" alignItems="center">
-                    <FormControl variant="outlined" sx={{ minWidth: 120, marginRight: 2 }}>
+                <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems="center" width={{ xs: '100%', md: 'auto' }}>
+                    <FormControl variant="outlined" sx={{ minWidth: 120, marginRight: { xs: 0, md: 2 }, marginBottom: { xs: 2, md: 0 }, width: { xs: '100%', md: 'auto' } }}>
                         <InputLabel>Arama Türü</InputLabel>
                         <Select value={searchType} onChange={handleSearchTypeChange} label="Arama Türü">
                             <MenuItem value="animal">Hayvan Adı</MenuItem>
@@ -298,9 +298,9 @@ function Animal() {
                         value={searchQuery}
                         onChange={handleSearchChange}
                         variant="outlined"
-                        sx={{ marginRight: 2 }}
+                        sx={{ marginRight: { xs: 0, md: 2 }, marginBottom: { xs: 2, md: 0 }, width: { xs: '100%', md: 'auto' } }}
                     />
-                    <Button variant="contained" color="primary" onClick={handleSearch}>
+                    <Button variant="contained" color="primary" sx={{ width: { xs: '100%', md: 'auto' } }} onClick={handleSearch}>
                         Ara
                     </Button>
                 </Box>

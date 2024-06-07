@@ -257,24 +257,24 @@ function Appointment() {
             <Typography variant="h4" align="center" gutterBottom style={{ marginTop: '20px', marginBottom: '20px' }}>
                 Randevu Yönetimi
             </Typography>
-            <Box display="flex" justifyContent="space-between" mb={2}>
+            <Box display="flex" flexDirection="column" justifyContent="space-between" mb={2}>
                 <Typography variant="h6" align="left" gutterBottom>
                     Randevu Arama
                 </Typography>
-                <Box display="flex" alignItems="center">
+                <Box display="flex" justifyContent="flex-end" flexWrap={{ xs: 'wrap', md: 'nowrap' }} alignItems="center">
                     <Autocomplete
                         options={[{ type: 'doctor', label: 'Doktora Göre' }, { type: 'animal', label: 'Hayvana Göre' }]}
                         getOptionLabel={(option) => option.label}
                         onChange={(event, newValue) => setSearchType(newValue ? newValue.type : '')}
                         renderInput={(params) => <TextField {...params} label="Arama Türü" margin="normal" fullWidth />}
-                        sx={{ width: 200, marginRight: 2 }}
+                        sx={{ width: { xs: '100%', md: 200 }, marginRight: { xs: 0, md: 2 }, marginBottom: { xs: '10px', md: 0 } }}
                     />
                     <Autocomplete
                         options={searchType === 'doctor' ? doctors : animals}
                         getOptionLabel={(option) => option.name}
                         onChange={(event, newValue) => setSearchId(newValue ? newValue.id : '')}
                         renderInput={(params) => <TextField {...params} label={searchType === 'doctor' ? 'Doktor Seçiniz' : 'Hayvan Seçiniz'} margin="normal" fullWidth />}
-                        sx={{ width: 200, marginRight: 2 }}
+                        sx={{ width: { xs: '100%', md: 200 }, marginRight: { xs: 0, md: 2 }, marginBottom: { xs: '10px', md: 0 } }}
                     />
                     <TextField
                         label="Başlangıç Tarihi"
@@ -282,7 +282,7 @@ function Appointment() {
                         value={searchStartDate}
                         onChange={(e) => setSearchStartDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
-                        sx={{ marginRight: 2 }}
+                        sx={{ width: { xs: '100%', md: 'auto' }, marginRight: { xs: 0, md: 2 }, marginBottom: { xs: '10px', md: 0 } }}
                     />
                     <TextField
                         label="Bitiş Tarihi"
@@ -290,13 +290,14 @@ function Appointment() {
                         value={searchEndDate}
                         onChange={(e) => setSearchEndDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
-                        sx={{ marginRight: 2 }}
+                        sx={{ width: { xs: '100%', md: 'auto' }, marginRight: { xs: 0, md: 2 }, marginBottom: { xs: '10px', md: 0 } }}
                     />
-                    <Button variant="contained" color="primary" onClick={handleSearch}>
+                    <Button variant="contained" color="primary" sx={{ width: { xs: '100%', md: 'auto' } }} onClick={handleSearch}>
                         Ara
                     </Button>
                 </Box>
             </Box>
+
             <Typography variant="h6" align="left" gutterBottom>
                 Randevu Listesi
             </Typography>
