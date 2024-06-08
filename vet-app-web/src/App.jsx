@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {  Route, Routes } from 'react-router-dom';
 import './App.css';
 import Customer from "./pages/Customer.jsx";
 import Animal from "./pages/Animal.jsx";
@@ -11,8 +11,7 @@ import Report from "./pages/Report.jsx";
 
 function App() {
     return (
-        <>
-        <Router>
+
             <div className="App">
                 <NavigationBar />
                 <Routes>
@@ -26,8 +25,7 @@ function App() {
 
                 </Routes>
             </div>
-        </Router>
-        </>
+
     );
 }
 
