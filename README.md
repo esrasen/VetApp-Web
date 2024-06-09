@@ -28,8 +28,6 @@
     </li>
     <li><a href="#klasor-yapisi">➤ Klasör Yapısı</a></li>
     <li><a href="#endpoint">➤ Endpointler</a></li>
-    <li><a href="#front">➤ Frontend Ekran Görüntüsü</a></li>
-    <li><a href="#gelistirme">➤ Geliştirme Hakkında</a></li>
     <li><a href="#iletisim">➤ İletişim ve Bilgiler</a></li>
   </ol>
 </details>
